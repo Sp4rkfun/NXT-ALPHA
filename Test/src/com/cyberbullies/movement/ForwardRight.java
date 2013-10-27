@@ -1,11 +1,15 @@
-public class ForwardLeft extends Routine {
-	public ForwardLeft(){
+package com.cyberbullies.movement;
+
+import com.cyberbullies.state.Motors;
+
+public class ForwardRight extends Routine {
+	public ForwardRight(){
 		super();
 		
 	}
 
 	@Override
-	void loop() {
+	public void loop() {
 		switch (step) {
 		case 0:
 			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
@@ -24,7 +28,7 @@ public class ForwardLeft extends Routine {
 			break;
 		case 1:
 			if (delta()>500){
-				Motors.movement.rotate(90, false);
+				Motors.movement.rotate(-90, false);
 				step++;
 			}
 			break;
@@ -36,7 +40,7 @@ public class ForwardLeft extends Routine {
 	}
 
 	@Override
-	boolean finished() {
+	public boolean finished() {
 		return step==2;
 	}
 }

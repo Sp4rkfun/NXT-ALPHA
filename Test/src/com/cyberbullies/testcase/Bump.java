@@ -1,11 +1,14 @@
-public class ForwardRight extends Routine {
-	public ForwardRight(){
-		super();
-		
-	}
+package com.cyberbullies.testcase;
+
+import lejos.nxt.Sound;
+
+import com.cyberbullies.state.Motors;
+
+
+public class Bump extends com.cyberbullies.movement.Routine {
 
 	@Override
-	void loop() {
+	public void loop() {
 		switch (step) {
 		case 0:
 			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
@@ -23,8 +26,12 @@ public class ForwardRight extends Routine {
 		}
 			break;
 		case 1:
+			Sound.beep();
 			if (delta()>500){
-				Motors.movement.rotate(-90, false);
+				Motors.m1.stop();
+				Motors.m2.stop();
+
+				Sound.beepSequenceUp();
 				step++;
 			}
 			break;
@@ -36,7 +43,8 @@ public class ForwardRight extends Routine {
 	}
 
 	@Override
-	boolean finished() {
+	public boolean finished() {
 		return step==2;
 	}
+
 }

@@ -1,3 +1,6 @@
+package com.cyberbullies.movement;
+
+import com.cyberbullies.state.Motors;
 
 public abstract class Routine {
 	protected long time;
@@ -13,7 +16,7 @@ public abstract class Routine {
 	public void reset(){
 		this.time=System.currentTimeMillis();
 	}
-	abstract void loop();
+	public abstract void loop();
 	
-	abstract boolean finished();
+	public abstract boolean finished();
 }

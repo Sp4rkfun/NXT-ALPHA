@@ -1,3 +1,7 @@
+package com.cyberbullies.movement;
+
+import com.cyberbullies.state.Motors;
+
 public class BackLeft extends Routine {
 	public BackLeft(){
 		super();
@@ -5,7 +9,7 @@ public class BackLeft extends Routine {
 	}
 
 	@Override
-	void loop() {
+	public void loop() {
 		switch (step) {
 		case 0:
 			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
@@ -35,7 +39,7 @@ public class BackLeft extends Routine {
 	}
 
 	@Override
-	boolean finished() {
+	public boolean finished() {
 		return step==2;
 	}
 }

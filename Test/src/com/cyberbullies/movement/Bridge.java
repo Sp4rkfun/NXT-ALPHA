@@ -1,7 +1,9 @@
+package com.cyberbullies.movement;
+
+import com.cyberbullies.state.Motors;
 
 public class Bridge extends Routine {
 	private boolean right;
-	private boolean rotated;
 	public Bridge(){
 		this(true,3000);
 	}
@@ -16,7 +18,7 @@ public class Bridge extends Routine {
 		 this.time=time+System.currentTimeMillis();
 	}
 	@Override
-	void loop() {
+	public void loop() {
 		switch (step) {
 		case 0:
 			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
@@ -35,10 +37,12 @@ public class Bridge extends Routine {
 			break;
 		case 1:
 			if (delta()>500){
-				if(right)
-					Motors.movement.rotate(-90, rotated);
+				Motors.m1.stop();
+				Motors.m2.stop();
+				if(this.right)
+					Motors.movement.rotate(-90, false);
 				else
-				Motors.movement.rotate(90, rotated);
+				Motors.movement.rotate(90, false);
 				step++;
 			}
 			break;
@@ -50,8 +54,8 @@ public class Bridge extends Routine {
 	}
 
 	@Override
-	boolean finished() {
-		return rotated;
+	public boolean finished() {
+		return step==2;
 	}
 
 }

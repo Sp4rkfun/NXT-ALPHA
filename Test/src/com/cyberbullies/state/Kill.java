@@ -1,3 +1,4 @@
+package com.cyberbullies.state;
 
 public class Kill extends Thread {
 	private long time;
