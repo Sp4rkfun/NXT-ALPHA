@@ -3,47 +3,49 @@ package com.cyberbullies.movement;
 import com.cyberbullies.state.Motors;
 
 public class Collect extends Routine {
+	public Collect(){
+		super();
+		
+	}
 
 	@Override
 	public void loop() {
 		switch (step) {
 		case 0:
-			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
-				if(Motors.us.getDistance()<25){
-					//TODO: Slow down speed of motors to appropriate level
-					Motors.m3.forward();
+			if(Motors.movement.isMoving()){
+				if(Motors.tsf.isPressed()){
+					Motors.movement.backward();
 					reset();
 					step++;
 				}
 				
 			}
 		else{
-			Motors.m1.forward();
-			Motors.m2.forward();
+			Motors.movement.forward();
 		}
 			break;
 		case 1:
-			if(Motors.tsf.isPressed()){
-				Motors.m1.stop();
-				Motors.m2.stop();
-				reset();
+			if (delta()>400){
+				Motors.movement.stop();
+				Motors.m3.forward();
 				step++;
 			}
 			break;
 		case 2:
-			if(delta()>2500)
+			if (delta()>2900){
+				Motors.m3.stop();
 				step++;
+			}
 			break;
-			
 
 		default:
 			break;
 		}
+		
 	}
 
 	@Override
 	public boolean finished() {
 		return step==3;
 	}
-
 }

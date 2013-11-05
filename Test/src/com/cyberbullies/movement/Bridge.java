@@ -21,24 +21,21 @@ public class Bridge extends Routine {
 	public void loop() {
 		switch (step) {
 		case 0:
-			if(Motors.m1.isMoving()&&Motors.m2.isMoving()){
+			if(Motors.movement.isMoving()){
 				if(System.currentTimeMillis()>time){
-					Motors.m1.stop();
-					Motors.m2.stop();
+					Motors.movement.stop();
 					reset();
 					step++;
 				}
 				
 			}
 		else{
-			Motors.m1.forward();
-			Motors.m2.forward();
+			Motors.movement.forward();
 		}
 			break;
 		case 1:
 			if (delta()>500){
-				Motors.m1.stop();
-				Motors.m2.stop();
+				Motors.movement.stop();
 				if(this.right)
 					Motors.movement.rotate(-90, false);
 				else
